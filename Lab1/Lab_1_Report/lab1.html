@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html>
 	<head>
-			<meta charset="UTF-8">
-				<title>Lab 1 Report</title>
-			<link rel="stylesheet" href="styles.css">
+		<meta charset="UTF-8">
+		<title>Lab 1 Report</title>
+		<link rel="stylesheet" href="styles.css">
 	</head>
 
 	<body>
@@ -29,6 +29,74 @@
 			<tr><td>cd Adafruit_Python_MCP3008</td></tr>
 			<tr><td>sudo python setup.py install<td></tr>
 		</table>
+		<p>This will clone the library from github to your local repository.</p>
+		<p>In the Adafruit Library's folder, edit examples/simpletest.py to look from this:
+		<table>
+			<tr><td># Software SPI configuration:</td></tr>
+			<tr><td>CLK  = 18</td></tr>
+			<tr><td>MISO = 23</td></tr>
+			<tr><td>MOSI = 24</td></tr>
+			<tr><td>CS   = 25<td></tr>
+			<tr><td>mcp = Adafruit_MCP3008.MCP3008(clk=CLK, cs=CS, miso=MISO, mosi=MOSI)<td></tr>
+			<tr><td><td></tr>
+			<tr><td># Hardware SPI configuration:<td></tr>
+			<tr><td>#SPI_PORT   = 0<td></tr>
+			<tr><td>#SPI_DEVICE = 0<td></tr>
+			<tr><td>#mcp = Adafruit_MCP3008.MCP3008(spi=SPI.SpiDev(SPI_PORT, SPI_DEVICE))<td></tr>	
+		</table>
+		to this:
+		<table>
+			<tr><td># Software SPI configuration:</td></tr>
+			<tr><td>#CLK  = 18</td></tr>
+			<tr><td>#MISO = 23</td></tr>
+			<tr><td>#MOSI = 24</td></tr>
+			<tr><td>#CS   = 25<td></tr>
+			<tr><td>#mcp = Adafruit_MCP3008.MCP3008(clk=CLK, cs=CS, miso=MISO, mosi=MOSI)<td></tr>
+			<tr><td><td></tr>
+			<tr><td># Hardware SPI configuration:<td></tr>
+			<tr><td>SPI_PORT   = 0<td></tr>
+			<tr><td>SPI_DEVICE = 0<td></tr>
+			<tr><td>mcp = Adafruit_MCP3008.MCP3008(spi=SPI.SpiDev(SPI_PORT, SPI_DEVICE))<td></tr>	
+		</table>
+
+		Notice that we have just commented out the 'Software SPI configuration' and uncommented the 'Hardware SPI configuration'</p>
+		<p>Now, we can test that the ADC is working correctly by running the simpletest python script by typing: python simpletest.py . Your output should look like this:</p>
+		<p>You may notice that the values are pretty trash and don't really make any sense. That's because any pin left floating in the ADC will print "garbage" values! But don't worry, we will connect the pins by the end of the lab.</p>
+		<h2> The Photocell Resistor</h2>
+		<p> The photocell resistor is a resistor that reacts to light: the more light that shines on it, the less resistance it will have. The datasheet for the photocell is here: 
+		<a href="https://cdn.sparkfun.com/datasheets/Sensors/LightImaging/SEN-09088.pdf"> datasheet </a>
+		</p>
+		<h2> Connecting the Photocell Circuit to the ADC </h2>
+		<p> We will first connect the photocell to channel 2 on the ADC by building a simple voltage divider where the input is 5v and the output is channel 2 on the ADC. The circuit diagram is shown below:</p>
+		<p>After building the circuit, let's check that our photocell matches the datasheet. Connecting the probes across the photocell, cover the photocell so that it is in darkness and measure the resistance. Then, expose the photocell to the light in the room and measure the resistance.</p>
+		<p>For reference, we got the values below
+			<table>
+				<tr> <th> Dark and Light Resistance Values</th></tr>
+				<tr> <td>Light Level</td>
+					<td>Resistance</td>
+				</tr>
+				<tr> 
+					<td>Dark(covered photocell)</td>
+					<td>48k ohms</td>
+				</tr>
+				<tr> 
+					<td>Light(uncovered photocell)</td>
+					<td>1.8k ohms</td>
+				</tr>
+			</table>
+
+			These match the values on data sheet! That mean we're using the right photocell!
+		</p>
+		<h2>Calculating the Output Voltage of the Photocell Circuit</h2>
+		<p> Using the dark and light resistance values that we obtained, we can calculate the range of outputs by solving the voltage values. </p>
+		<p> The equation we use to calculate the upper and lower bound is:</p>
+		<p>Output voltage = (5v) *(10k/ (10k + Resistance of photocell))</p>
+		<p>Using the dark resistance we obtain a  lower bound of 0.86V and using the light resistance, we obtain an upper bound of 4.24V. </p>
+		<h2> Calculating the expected values from the ADC</h2>
+		<p> Now we can calculate the expected values from our ADC. <br>The equation to convert the output voltage of the voltage divider to output from the ADC is:</p>
+		<p>ADC value = (output voltage/ 5v) *1023</p>
+		<p>The 1023 value comes from the fact that the MCP3008 is a 10 bit ADC and the max value that can come from 10 bits is 1023 or 0x3FF(hexadecimal value). Therefore we only need to take the ratio of output to max voltage and multiply it by the max ADC value to convert.</p>
+		<p>Using the equation from above we, calculate that the ADC output should range from 177 to 868</p>
 	</body>
 
 </html> 
