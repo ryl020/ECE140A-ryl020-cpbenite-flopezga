@@ -1,13 +1,34 @@
-CTYPE html>
+<!DOCTYPE html>
 <html>
 	<head>
 			<meta charset="UTF-8">
-				<title>Title of the document......</title>
+				<title>Lab 1 Report</title>
 			<link rel="stylesheet" href="styles.css">
 	</head>
 
 	<body>
-			Content of the document......
+		<h1> ECE 140a: Introduction to the ADC and Sensors </h1>
+		<h2> Introduction: </h2>
+		<p>In this lab we will demonstrate how to use the PI Cobbler to extend the Raspberry PI pins to a breadboard, the ADC(Analog to Digital Converter) to allow the Raspberry PI to receive analog signal input, and various sensors in order to receive basic sensor input.</p>
+		<h2> The PI Cobbler </h2>
+		<p> The Pi Cobbler allows you to extend the Raspberry PI pins to a breadboard. We will use it to connect to another breadboard with our sensors and ADC. The PI Cobbler should be placed as pictured on the breadboard.</p>
+		<h2> The ADC </h2>
+		<p>For this lab, we will be using the MCP3008 which is an ADC. The ADC will read analog signals(eg. sensors) and output digital signals. This is important because the Raspberry PI does not have an ADC so it cannot read analog signals. Without the ADC we cannot use our sensors!</p>
+		<h2> Connecting the ADC to the PI Cobbler </h2>
+		<p>Using a different breadboard than the breadboard that was used for the PI Cobbler, place the ADC as pictured below. </p>
+		<p>Using the picture of the MCP3008 pin diagram, and the Raspberry PI 3 GPIO Pin Layout</p>
+		<p> connect the ADC and PI Cobbler as depicted in the diagram below</p>
+		<p> At this point your circuit should look something like this:</p>
+		<h2> Setting Up the Software for the ADC </h2>
+		<p>Now that we've connected all the hardware, it's time to connect the software! Luckily there's an Adafruit library for the MCP3008. To install the library, navigate to the directory you are creating the project in on your Raspberry PI and run:
+		</p>
+		<table>
+			<tr><td>sudo apt-get update</td></tr>
+			<tr><td>sudo apt-get install git build-essential python-dev</td></tr>
+			<tr><td>git clone https://github.com/adafruit/Adafruit_Python_MCP3008.git</td></tr>
+			<tr><td>cd Adafruit_Python_MCP3008</td></tr>
+			<tr><td>sudo python setup.py install<td></tr>
+		</table>
 	</body>
 
 </html> 
