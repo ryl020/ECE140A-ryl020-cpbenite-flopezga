@@ -150,12 +150,74 @@
                 <p>
                 Cover the photocell so that it is in darkness and measure the resistance. Then, expose the photocell to the light in the room and measure the resistance.
                 </p>
+		<p>
+		For reference, the values we measured are shown below:
+		</p>
+		<table>
+			<tr>
+				<td>
+					Dark and Light Resistance Values
+				</td>
+				</tr>
+				<tr>
+					<td><p>Light Level</p></td>
+					<td><p>Resistance(Measured)</p></td>>
+				</tr>
+				<tr>
+					<td> <p>Dark (covered photocell)</p></td>
+					<td> <p>48k ohms</p></td>
+				</tr>
+				<tr>
+					<td> <p>Light (uncovered photocell)</p></td>
+					<td> <p>1.8k ohms</p></td>
+				</tr>
+		</table>
+		<p> These match the values on the data sheet! That means we're using the right photocell!</p>
+		</div>
+		<div>
+			<h2>Calculating the Output Voltage of the Photocell Circuit</h2>
+			<p>
+Using the dark and light resistance values that we obtained, we can calculate the range of outputs by solving the voltage values. 			
+			</p>
+			<p>
+			The equation we use to calculate the upper and lower bound is:
+			</p>
+			<p>
+			Output Voltage = (5 V) * (10k / (10k + Photocell Resistance))
+			</p>
+			<p>
+Using the dark resistance we obtain a  lower bound of 0.86V and using the light resistance, we obtain an upper bound of 4.24V. 			
+</p>
+<div>
+	<h2>Calculating the expected values from the ADC</h2>
+	<p>
+Now we can calculate the expected values from our ADC. 
+	</p>
+	<p>
+The equation to convert the output voltage of the voltage divider to output from the ADC is:
+	</p>
+	<p>
+ADC value = (output voltage / 5v) *1023
+		</p>
+		<p>
+The 1023 value comes from the fact that the MCP3008 is a 10 bit ADC and the max value that can come from 10 bits is 1023 or 0x3FF(hexadecimal value). Therefore we only need to take the ratio of output to max voltage and multiply it by the max ADC value to convert.
+		</p>
+		<p>
+Using the equation from above we, calculate that the ADC output should range from 177 to 868
+		</p>
+		<p>
+The observed readings from out MCP3008 did not agree with our calculations however. To fix this, we simply switched the places of the 10k resistor and the photocell. This means the input to the ADC will be the output voltage across the photocell. The light resistance of the photocell is small, resulting in a small output voltage and a digital value closer to 0. The dark resistance of the photocell is large, resulting in a larger output voltage and a digital value closer to 1023.
+
+		</p>
+</div>
+		</div>
             </div>
         </div>
 
       </div>        <!-- Photocell container ends-->
 
-        <div class="DHT-container">
+    
+      <div class="DHT-container">
             <div class="">
                 <h3>Connecting the DHT22 to the Raspberry Pi</h2>
                 <p>Recall that we had to use the ADC to connect the photocell to the ADC since it was an analog signal. Since the DHT22 is a digital sensor (datasheet: <a href="https://cdn-shop.adafruit.com/datasheets/Digital+humidity+and+temperature+sensor+AM2302.pdf">here</a>            ), we can connect it directly to the Raspberry PI. How convenient! </p>
