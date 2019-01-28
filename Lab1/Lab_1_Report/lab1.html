@@ -144,3 +144,46 @@
         <p>
         Cover the photocell so that it is in darkness and measure the resistance. Then, expose the photocell to the light in the room and measure the resistance
         </p>
+	<div>
+<h2>
+Using the Sound Sensor: The Clapper Circuit
+</h2>
+<p>
+We will now use the sound sensor to make an led turn on when we clap. To access the Raspberry Pi’s GPIO pins to control the LED, we can refer to <a href="https://thepihut.com/blogs/raspberry-pi-tutorials/27968772-turning-on-an-led-with-your-raspberry-pis-gpio-pins"> here </a> as reference. An explanation for a simple script to turn on and off the LED can be found there as well. 
+</p>
+<p>
+First, run the example script from the adc. In the Adafruit_Python_MCP3008/examples directory, run:
+</p>
+<p>
+run:
+</p>
+<p>
+python simpletest.py
+</p>
+<p>
+Keeping track of the pin where the audio pin is connected, watch the values of the audio output and develop a rough average of the sound level. Then, clap next to the sound sensor and observe the average peak sound output from the sound sensor.
+</p>
+<p>
+The code for the clapper circuit is shown below:
+</p>
+<p>
+By observing the readings of the audio signal, we picked 620 to be our threshold value as it is greater than the average sound level of them room, but lower than the peak value of our claps.
+</p>
+</div>
+<div>
+<h2>
+Putting It All Together, Main.py
+</h2>
+<p>
+We can now use all the sensors to get a snapshot of the time, temperature, humidity, light level, gate, envelop, and audio data.
+</p>
+<p>
+Using code like this:
+</p>
+<p>
+And running it for an hour, we can compile the data to make graphs over time. So cool!
+</p>
+<p>
+Note: Around the 36 minute mark, Ryan moved his laptop and changed the amount of light that reached the photocell
+</p>
+</div>
