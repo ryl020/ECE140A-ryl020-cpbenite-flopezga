@@ -4,184 +4,143 @@
 <head>
   <meta charset="UTF-8">
   <title>Lab 1 Report</title>
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="real_styles.css">
 </head>
 
 <body>
-  <h1> ECE 140A: Introduction to the ADC and Sensors </h1>
-  
-  <div class="intro">
-    <h2> Introduction: </h2>
-    <p>Through this lab, we are introduced to Raspberry Pi and various components. The PI Cobbler is used to extend Raspberry Pi pins to a breadboard for easier circuit building. Since the Raspberry Pi cannot read analog signals by itself, an Analog-to-Digital
-      Converter (ADC) is used. This will serve as a medium between some of our sensors, such as sound and light, and the Raspberry Pi. Finally, a Python script will be used to gather our various sensor data.</p>
-  </div>
 
-  <div class="cobbler-header">
-    <h2> The PI Cobbler </h2>
-    <p>The Pi Cobbler allows you to extend the Raspberry PI pins to a breadboard, allowing for easier circuit building to connect to our various sensors and ADC. A simple connection can be found below: </p>
-  </div>
+    <div class="headline">
+        <img class="headline-img" src="./images/RPI.png">
+        <h1 class="headline-text"> ECE 140a: Introduction to the ADC and Sensors </h1>
+    </div>
   
-  <div class="cobbler-container">
-    <div class="cobbler-intro">
-      <h2> The ADC </h2>
-      <p>Throughout this lab, we will be using an MCP3008 which will serve as our ADC. After configuration, it will be able to take in analog signals from our sensors and output them as digital signals that our Raspberry Pi can read. Without the ADC, our
-        Raspberry Pi cannot correctly read from our sensors!
-      </p>
-    </div>
-    
-    <div class="cobbler-connection">
-      <h2> Connecting the ADC to the PI Cobbler </h2>
-      <p>Using a different breadboard than the breadboard that was used for the PI Cobbler, place the ADC as pictured below. </p>
-      <p>Using the picture of the MCP3008 pin diagram, and the Raspberry PI 3 GPIO Pin Layout</p>
-      <p> connect the ADC and PI Cobbler as depicted in the diagram below</p>
-      <p> At this point your circuit should look something like this:</p>
-      <p>
-        Place ADC on a separate breadboard than the one used for the PI Cobbler. Using the pin layouts for the MCP3008 and Raspberry Pi …
-      </p>
-    </div>
-    
-    <div class="cobbler-software">
-      <h2> Setting Up the Software for the ADC </h2>
-      <p>
-        Note: For a quick guide on Unix commands, check out:
-        <a href="https://en.wikibooks.org/wiki/Guide_to_Unix/Commands/File_System_Utilities">
-		this link</a>
-      </p>
-      <p>
-        After making all the necessary connections, it’s time to connect the software! Fortunately, there’s an Adafruit library for the MCP3008 that we can utilize. In order to install the library, navigate to the directory you are creating the project in on
-        your Raspberry Pi and run:
-      </p>
+  <div class="container">
+
+    <div class="intro">
+        <h2> Introduction: </h2>
+        <p>Through this lab, we are introduced to Raspberry Pi and various components. The PI Cobbler is used to extend Raspberry Pi pins to a breadboard for easier circuit building. Since the Raspberry Pi cannot read analog signals by itself, an Analog-to-Digital
+        Converter (ADC) is used. This will serve as a medium between some of our sensors, such as sound and light, and the Raspberry Pi. Finally, a Python script will be used to gather our various sensor data.</p>
     </div>
 
-  </div>        <!-- Cobbler container ends-->
+    <div class="cobbler-container">
+
+        <div class="cobbler-header">
+            <h2> The PI Cobbler </h2>
+            <p>The Pi Cobbler allows you to extend the Raspberry PI pins to a breadboard, allowing for easier circuit building to connect to our various sensors and ADC. A simple connection can be found below: </p>
+        </div>
+
+        <div class="cobbler-intro">
+        <h2> The ADC </h2>
+        <p>Throughout this lab, we will be using an MCP3008 which will serve as our ADC. After configuration, it will be able to take in analog signals from our sensors and output them as digital signals that our Raspberry Pi can read. Without the ADC, our
+            Raspberry Pi cannot correctly read from our sensors!
+        </p>
+        </div>
+
+        <div class="cobbler-connection">
+        <h2> Connecting the ADC to the PI Cobbler </h2>
+        <p>Using a different breadboard than the breadboard that was used for the PI Cobbler, place the ADC as pictured below. </p>
+        <p>Using the picture of the MCP3008 pin diagram, and the Raspberry PI 3 GPIO Pin Layout</p>
+        <p> connect the ADC and PI Cobbler as depicted in the diagram below</p>
+        <p> At this point your circuit should look something like this:</p>
+        <p>
+            Place ADC on a separate breadboard than the one used for the PI Cobbler. Using the pin layouts for the MCP3008 and Raspberry Pi …
+        </p>
+        </div>
+
+        <div class="cobbler-software">
+        <h2> Setting Up the Software for the ADC </h2>
+        <p>
+            Note: For a quick guide on Unix commands, check out:
+            <a href="https://en.wikibooks.org/wiki/Guide_to_Unix/Commands/File_System_Utilities">
+            this link</a>
+        </p>
+        <p>
+            After making all the necessary connections, it’s time to connect the software! Fortunately, there’s an Adafruit library for the MCP3008 that we can utilize. In order to install the library, navigate to the directory you are creating the project in on
+            your Raspberry Pi and run:
+        </p>
+        </div>
+
+    </div>
+    <!-- Cobbler container ends-->
 
     <div>
-      <table>
-        <tr>
-          <td>sudo apt-get update</td>
-        </tr>
-        <tr>
-          <td>sudo apt-get install git build-essential python-dev</td>
-        </tr>
-        <tr>
-          <td>git clone https://github.com/adafruit/Adafruit_Python_MCP3008.git</td>
-        </tr>
-        <tr>
-          <td>cd Adafruit_Python_MCP3008</td>
-        </tr>
-        <tr>
-          <td>sudo python setup.py install
-            <td>
-        </tr>
-      </table>
-      <p>This will clone the library from github to your local repository.</p>
-      <p>In the Adafruit Library's folder, edit examples/simpletest.py to look from this:
         <table>
-          <tr>
-            <td># Software SPI configuration:</td>
-          </tr>
-          <tr>
-            <td>CLK = 18</td>
-          </tr>
-          <tr>
-            <td>MISO = 23</td>
-          </tr>
-          <tr>
-            <td>MOSI = 24</td>
-          </tr>
-          <tr>
-            <td>CS = 25
-              <td>
-          </tr>
-          <tr>
-            <td>mcp = Adafruit_MCP3008.MCP3008(clk=CLK, cs=CS, miso=MISO, mosi=MOSI)
-              <td>
-          </tr>
-          <tr>
+        <tr>
+            <td>sudo apt-get update</td>
+        </tr>
+        <tr>
+            <td>sudo apt-get install git build-essential python-dev</td>
+        </tr>
+        <tr>
+            <td>git clone https://github.com/adafruit/Adafruit_Python_MCP3008.git</td>
+        </tr>
+        <tr>
+            <td>cd Adafruit_Python_MCP3008</td>
+        </tr>
+        <tr>
+            <td>sudo python setup.py install
             <td>
-              <td>
-          </tr>
-          <tr>
-            <td># Hardware SPI configuration:
-              <td>
-          </tr>
-          <tr>
-            <td>#SPI_PORT = 0
-              <td>
-          </tr>
-          <tr>
-            <td>#SPI_DEVICE = 0
-              <td>
-          </tr>
-          <tr>
-            <td>#mcp = Adafruit_MCP3008.MCP3008(spi=SPI.SpiDev(SPI_PORT, SPI_DEVICE))
-              <td>
-          </tr>
+        </tr>
         </table>
-        to this:
-        <table>
-          <tr>
-            <td># Software SPI configuration:</td>
-          </tr>
-          <tr>
-            <td>#CLK = 18</td>
-          </tr>
-          <tr>
-            <td>#MISO = 23</td>
-          </tr>
-          <tr>
-            <td>#MOSI = 24</td>
-          </tr>
-          <tr>
-            <td>#CS = 25
-              <td>
-          </tr>
-          <tr>
-            <td>#mcp = Adafruit_MCP3008.MCP3008(clk=CLK, cs=CS, miso=MISO, mosi=MOSI)
-              <td>
-          </tr>
-          <tr>
-            <td>
-              <td>
-          </tr>
-          <tr>
-            <td># Hardware SPI configuration:
-              <td>
-          </tr>
-          <tr>
-            <td>SPI_PORT = 0
-              <td>
-          </tr>
-          <tr>
-            <td>SPI_DEVICE = 0
-              <td>
-          </tr>
-          <tr>
-            <td>mcp = Adafruit_MCP3008.MCP3008(spi=SPI.SpiDev(SPI_PORT, SPI_DEVICE))
-              <td>
-          </tr>
-        </table>
+        <p>This will clone the library from github to your local repository.</p>
+        <p>In the Adafruit Library's folder, edit examples/simpletest.py to look from this to this:
+        <div class="spi-container">
+            <div class="left">
+            <h3>Software SPI configuration</h3>
+            <ul>
+                <li>CLK = 18</li>
+                <li>MISO = 23</li>
+                <li>MOSI = 24</li>
+                <li>CS = 25</li>
+                <li>mcp = Adafruit_MCP3008.MCP3008(clk=CLK, cs=CS, miso=MISO, mosi=MOSI)</li>
+            </ul>
+
+            <h3>Hardware SPI configuration</h3>
+            <ul>
+                <li>#SPI_PORT = 0</li>
+                <li>#SPI_DEVICE = 0</li>
+                <li>#mcp = Adafruit_MCP3008.MCP3008(spi=SPI.SpiDev(SPI_PORT, SPI_DEVICE))</li>
+            </ul>
+            </div>
+
+            <div class="right">
+            <h3>Software SPI configuration</h3>
+            <ul>
+                <li>#CLK = 18</li>
+                <li>#MISO = 23</li>
+                <li>#MOSI = 24</li>
+                <li>#CS = 25</li>
+                <li>#mcp = Adafruit_MCP3008.MCP3008(clk=CLK, cs=CS, miso=MISO, mosi=MOSI)</li>
+            </ul>
+
+            <h3>Hardware SPI configuration</h3>
+            <ul>
+                <li>SPI_PORT = 0</li>
+                <li>SPI_DEVICE = 0</li>
+                <li>mcp = Adafruit_MCP3008.MCP3008(spi=SPI.SpiDev(SPI_PORT, SPI_DEVICE))</li>
+            </ul>
+            </div>
+
+        </div>
 
         Notice that we have just commented out the 'Software SPI configuration' and uncommented the 'Hardware SPI configuration'</p>
-      <p>Now, we can test that the ADC is working correctly by running the simpletest python script by typing: python simpletest.py . Your output should look like this:</p>
-      <p>You may notice that the values are pretty trash and don't really make any sense. That's because any pin left floating in the ADC will print "garbage" values! But don't worry, we will connect the pins by the end of the lab.
-      </p>
+        <p>Now, we can test that the ADC is working correctly by running the simpletest python script by typing: python simpletest.py . Your output should look like this:</p>
+        <p>You may notice that the values are pretty trash and don't really make any sense. That's because any pin left floating in the ADC will print "garbage" values! But don't worry, we will connect the pins by the end of the lab.
+        </p>
     </div>
 
     <div class="photocell-intro">
-      <h2> The Photocell Resistor</h2>
-      <p> The photocell resistor is a resistor that reacts to light: the more light that shines on it, the less resistance it will have. The datasheet for the photocell is here:
+        <h2> The Photocell Resistor</h2>
+        <p> The photocell resistor is a resistor that reacts to light: the more light that shines on it, the less resistance it will have. The datasheet for the photocell is here:
         <a href="https://cdn.sparkfun.com/datasheets/Sensors/LightImaging/SEN-09088.pdf"> datasheet </a>
-      </p>
+        </p>
     </div>
 
     <div class="photocell-connect">
-      <h2> Connecting the Photocell Circuit to the ADC </h2>
-      <p> We will first connect the photocell to channel 2 on the ADC by building a simple voltage divider where the input is 5v and the output is channel 2 on the ADC. The circuit diagram is shown below:</p>
-      <p>
+        <h2> Connecting the Photocell Circuit to the ADC </h2>
+        <p> We will first connect the photocell to channel 2 on the ADC by building a simple voltage divider where the input is 5v and the output is channel 2 on the ADC. The circuit diagram is shown below:</p>
+        <p>
         After completing the circuit, let’s confirm that our photocell is working as intended. We will measure the light and dark resistance and compare it to the values found in the datasheet. Connecting the probes across the photocell, </p>
-      <p>
+        <p>
         Cover the photocell so that it is in darkness and measure the resistance. Then, expose the photocell to the light in the room and measure the resistance
-      </p>
-																																<p>For reference, we got the values below
-	
+        </p>
