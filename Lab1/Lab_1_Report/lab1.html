@@ -11,7 +11,7 @@
 <body>
 
   <div class="headline">
-    <img class="headline-img" src="./pictures/RPI.png">
+    <img class="headline-img" src="/pictures/RPI.png">
     <h1 class="headline-text"> ECE 140a: Introduction to the ADC and Sensors </h1>
   </div>
 
@@ -30,7 +30,7 @@
             <h2> The PI Cobbler </h2>
             <p>The Pi Cobbler allows you to extend the Raspberry PI pins to a breadboard, allowing for easier circuit building to connect to our various sensors and ADC. A simple connection can be found to the right: </p>
           </div>
-          <img class="figure figure-right" src="pictures/Pi_Cobbler.jpg">
+          <img class="figure-width figure-right" src="pictures/Pi_Cobbler.jpg">
         </div>
 
         <div class="cobbler-intro">
@@ -49,17 +49,18 @@
             <img class="figure" src="pictures/MCP_3008.png">
             <img class="figure" src="pictures/Rpin.png">
           </div>
-          <p> At this point your circuit should look something like this:</p>
-
           <p>
             Place ADC on a separate breadboard than the one used for the PI Cobbler. Using the pin layouts for the MCP3008 and Raspberry Pi
           </p>
-          <img class="figure" src="pictures/ADC.jpg">
+          <p> At this point your circuit should look something like this:</p>
+          <div class="grid">
+            <img class="figure-center" src="pictures/ADC.jpg">
+          </div>
         </div>
 
         <div class="cobbler-software">
           <h3> Setting Up the Software for the ADC </h3>
-          <p>
+          <p class="italics">
             Note: For a quick guide on Unix commands, check out:
             <a href="https://en.wikibooks.org/wiki/Guide_to_Unix/Commands/File_System_Utilities">
                     this link</a>
@@ -78,7 +79,7 @@
           </ol>
 
           <p>This will clone the library from github to your local repository.</p>
-          <p>In the Adafruit Library's folder, edit examples/simpletest.py to look from this to this:
+          <p>In the Adafruit Library's folder, edit examples/simpletest.py to look from the code on the left to the code on the right:
 
             <div class="spi-container">
               <div class="left">
@@ -123,7 +124,7 @@
 
             <p>Notice that we have just commented out the 'Software SPI configuration' and uncommented the 'Hardware SPI configuration'</p>
             <p>Now, we can test that the ADC is working correctly by running the simpletest python script by typing: python simpletest.py . Your output should look like this:</p>
-            <img class="" src="pictures/Trash_Output.PNG">
+            <img class="figure-width" src="pictures/Trash_Output.PNG">
             <p>You may notice that the values are pretty trash and don't really make any sense. That's because any pin left floating in the ADC will print "garbage" values! But don't worry, we will connect the pins by the end of the lab.</p>
         </div>
 
@@ -144,13 +145,10 @@
         <div class="photocell-connect">
           <img class="figure-left" src="pictures/photocell.png">
           <div class="text-right">
-            <h3> Connecting the Photocell Circuit to the ADC </h2>
+            <h3> Connecting the Photocell Circuit to the ADC </h3>
               <p> We will first connect the photocell to channel 2 on the ADC by building a simple voltage divider where the input is 5v and the output is channel 2 on the ADC. The circuit diagram is shown below:</p>
-              <p>
-                After completing the circuit, let's confirm that our photocell is working as intended. We will measure the light and dark resistance and compare it to the values found in the datasheet. Connecting the probes across the photocell, </p>
-              <p>
-                Cover the photocell so that it is in darkness and measure the resistance. Then, expose the photocell to the light in the room and measure the resistance.
-              </p>
+              <p>After completing the circuit, let's confirm that our photocell is working as intended. We will measure the light and dark resistance and compare it to the values found in the datasheet. Connecting the probes across the photocell, </p>
+              <p>Cover the photocell so that it is in darkness and measure the resistance. Then, expose the photocell to the light in the room and measure the resistance.</p>
               <table>
                 <tr>
                   <td>
@@ -234,7 +232,7 @@
           <h3>Connecting the DHT22 to the Raspberry Pi</h2>
             <p>Recall that we had to use the ADC to connect the photocell to the ADC since it was an analog signal. Since the DHT22 is a digital sensor (datasheet: <a href="https://cdn-shop.adafruit.com/datasheets/Digital+humidity+and+temperature+sensor+AM2302.pdf">here</a>              ), we can connect it directly to the Raspberry PI. How convenient! </p>
             <p>The wiring should be as follows:</p>
-            <p>Don’t forget to connect a 10k resistor between 5v and DATA or you could break something(check the data sheet for more clarification)!</p>
+            <p class="italics">Don’t forget to connect a 10k resistor between 5v and DATA or you could break something(check the data sheet for more clarification)!</p>
 
             <table class="">
               <tr>
@@ -331,9 +329,9 @@
             <th>Audio</th>
           </tr>
           <tr>
-            <td><img class="figure" src="pictures/Gate.jpg"></th>
-              <td><img class="figure" src="pictures/Envelope.jpg"></td>
-              <td><img class="figure" src="pictures/Audio1.jpg"></td>
+              <td><img class="figure-width" src="pictures/Gate.jpg"></th>
+              <td><img class="figure-width" src="pictures/Envelope.jpg"></td>
+              <td><img class="figure-width" src="pictures/Audio1.jpg"></td>
           </tr>
         </table>
         <p>From the pictures we can see the values are as follows:</p>
@@ -345,10 +343,14 @@
         <p>There’s one problem, the ADC is operating at 3.3v but the output of the sound detector is 5v. In for the ADC to read the sound sensor values correctly, we have to bring down the voltage using a voltage divider.</p>
         <p>Because we were at home, we made use of six 330 ohm resistors that were laying around. Since the ratio we want to bring down the voltage is two thirds, we connect three 330 ohm resistors in series. By placing the input one one end of the resistor
           and taking the output across two of the resistors, we can successfully bring down the voltage.</p>
-        <img class="figure" src="pictures/Divider.jpg">
+        <div class="grid">
+          <img class="figure-width figure-center" src="pictures/Divider.jpg">
+        </div>
         <p>Once the voltage divider is built, read the audio output pin on the sound sensor and the input pin on the ADC on the oscilloscope. Have the audio output pin on ch 1 and the input pin on ch 2.</p>
         <p>Your oscilloscope should look something like this:</p>
-        <img class="figure" src="pictures/Logic1.jpg">
+        <div class="grid">
+          <img class="figure-width figure-center" src="pictures/Logic1.jpg">
+        </div>
         <p>If it does, your sound sensor is working correctly!</p>
       </div>
 
@@ -359,7 +361,9 @@
         <p>
           We will now use the sound sensor to make an led turn on when we clap. To access the Raspberry Pi’s GPIO pins to control the LED, we can refer to <a href="https://thepihut.com/blogs/raspberry-pi-tutorials/27968772-turning-on-an-led-with-your-raspberry-pis-gpio-pins"> here </a>          as reference. An explanation for a simple script to turn on and off the LED can be found there as well.
         </p>
-        <img class="figure" src="pictures/LED_Example.png">
+        <div class="grid">
+          <img class="figure-width figure-center" src="pictures/LED_Example.png">
+        </div>
         <p>
           First, run the example script from the adc. In the Adafruit_Python_MCP3008/examples directory, run:
         </p>
@@ -372,7 +376,7 @@
         <p>
           The code for the clapper circuit is shown below:
         </p>
-        <img class="figure" src="pictures/clapper.png">
+        <img class="figure-width" src="pictures/clapper.png">
         <p>
           By observing the readings of the audio signal, we picked 620 to be our threshold value as it is greater than the average sound level of the room, but lower than the peak value of our claps.
         </p>
@@ -388,12 +392,12 @@
         <p>
           Using code like this:
         </p>
-        <img class="figure" src="pictures/main_py.PNG">
+        <img class="figure-width" src="pictures/main_py.PNG">
         <p>
           And running it for an hour, we can compile the data to make graphs over time. So cool!
         </p>
-        <p>
-          Note: Around the 36 minute mark, Ryan moved his laptop and changed the amount of light that reached the photocell
+        <p class="italics">
+          Note: Around the 36 minute mark, Ryan moved his laptop and changed the amount of light that reached the photocell.
         </p>
         <div class="main-imgs">
           <img class="figure" src="pictures/Temperature vs. Time.png">
