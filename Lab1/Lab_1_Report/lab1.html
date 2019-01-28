@@ -222,7 +222,7 @@ The observed readings from out MCP3008 did not agree with our calculations howev
                 <h3>Connecting the DHT22 to the Raspberry Pi</h2>
                 <p>Recall that we had to use the ADC to connect the photocell to the ADC since it was an analog signal. Since the DHT22 is a digital sensor (datasheet: <a href="https://cdn-shop.adafruit.com/datasheets/Digital+humidity+and+temperature+sensor+AM2302.pdf">here</a>            ), we can connect it directly to the Raspberry PI. How convenient! </p>
                 <p>The wiring should be as follows:</p>
-                <p>Don’t forget to connect a 10k resistor between 5v and DATA or you could break something(check the data sheet for more clarification)!</p>
+                <p>Don't forget to connect a 10k resistor between 5v and DATA or you could break something(check the data sheet for more clarification)!</p>
             </div>
             <table class="">
                 <tr>
@@ -249,7 +249,7 @@ The observed readings from out MCP3008 did not agree with our calculations howev
 
             <div class="DHT-software">
                 <h2>Setting Up the Software for the DHT</h2>
-                <p>Now that we’ve wired the DHT22 to the Raspberry PI, it’s time to set up the software so it can run.</p>
+                <p>Now that we've wired the DHT22 to the Raspberry PI, it's time to set up the software so it can run.</p>
                 <p>Run the following commands:</p>
                 <ol>
                     <li>sudo apt-get install build-essential python-dev</li>
@@ -259,7 +259,7 @@ The observed readings from out MCP3008 did not agree with our calculations howev
                     <li>cd Adafruit_Python_DHT</li>
                     <li>sudo python setup.py install</li>
                 </ol>
-                <p>To check that we’ve installed all the software correctly, we run:</p>
+                <p>To check that we've installed all the software correctly, we run:</p>
                 <ul>
                     <li>sudo python AdafruitDHT.py 22 4</li>
                 </ul>
@@ -275,7 +275,7 @@ The observed readings from out MCP3008 did not agree with our calculations howev
 
         <div class="sound-container">
         <p>Section Header: The Sound Sensor</p>
-        <p>The sound sensor is an analog sensor which will allow us to gather sound data. We will use the Sparkfun “hookup guide”(<a href="https://learn.sparkfun.com/tutorials/sound-detector-hookup-guide">Link</a>) to connect the sound sensor to the Raspberry
+        <p>The sound sensor is an analog sensor which will allow us to gather sound data. We will use the Sparkfun "hookup guide"(<a href="https://learn.sparkfun.com/tutorials/sound-detector-hookup-guide">Link</a>) to connect the sound sensor to the Raspberry
             Pi</p>
           <h2>Connecting the Sound Sensor to the Raspberry Pi</h2>
           <p>Connect the sound sensor according to the chart below</p>
@@ -306,7 +306,7 @@ The observed readings from out MCP3008 did not agree with our calculations howev
             </tr>
           </table>
           <p>For our example we connected Gate to gate pin, Envelope to adc pin, and Audio to adc pin.</p>
-          <p>Now, let’s check the output of the sound sensor.</p>
+          <p>Now, let's check the output of the sound sensor.</p>
           <p>Read the Gate, Envelope, and Audio signals using the Oscilloscope and they should look something like this:</p>
           <table>
             <tr>
@@ -341,7 +341,7 @@ The observed readings from out MCP3008 did not agree with our calculations howev
             Using the Sound Sensor: The Clapper Circuit
           </h2>
           <p>
-            We will now use the sound sensor to make an led turn on when we clap. To access the Raspberry Pi’s GPIO pins to control the LED, we can refer to <a href="https://thepihut.com/blogs/raspberry-pi-tutorials/27968772-turning-on-an-led-with-your-raspberry-pis-gpio-pins"> here </a>            as reference. An explanation for a simple script to turn on and off the LED can be found there as well.
+            We will now use the sound sensor to make an led turn on when we clap. To access the Raspberry Pi's GPIO pins to control the LED, we can refer to <a href="https://thepihut.com/blogs/raspberry-pi-tutorials/27968772-turning-on-an-led-with-your-raspberry-pis-gpio-pins"> here </a>            as reference. An explanation for a simple script to turn on and off the LED can be found there as well.
           </p>
           <p>
             First, run the example script from the adc. In the Adafruit_Python_MCP3008/examples directory, run:
