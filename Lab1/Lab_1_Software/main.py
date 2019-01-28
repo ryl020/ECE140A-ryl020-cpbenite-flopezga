@@ -24,21 +24,21 @@ mcp = Adafruit_MCP3008.MCP3008(spi=SPI.SpiDev(SPI_PORT, SPI_DEVICE))
 GPIO.setmode(GPIO.BCM)
 GPIO.setup(21, GPIO.IN)
 
-current_time = time.asctime()
 humidity, temperature = Adafruit_DHT.read_retry(sensor, 4)
 minute = 0
-current_minute = dt.now().minute
+current_minute = 100
 
+#Poll 40 readings
 while minute < 40:
 	humidity, temperature = Adafruit_DHT.read_retry(sensor, 4)	
 
-
 	# Read data every minute
 	if (current_minute != dt.now().minute):
+                current_time = time.asctime()
 		print("Minute: " + str(minute))
 		print("Time = " + current_time[11:19])
-		print("Temp = " + str(temperature)) #TODO: fix this
-		print("Hum = " + str(humidity) + "%") #TODO: fix this
+		print("Temp = " + str(int(temperature)))
+		print("Hum = " + str(int(humidity)) + "%")
 		print("Light = " + str(mcp.read_adc(2)))
 		print("Gate = " + str(GPIO.input(21)))
 		print("Envelope = " + str(mcp.read_adc(1)))
