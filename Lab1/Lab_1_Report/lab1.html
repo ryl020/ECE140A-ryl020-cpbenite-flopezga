@@ -9,22 +9,26 @@
 
 <body>
   <h1> ECE 140A: Introduction to the ADC and Sensors </h1>
+  
   <div class="intro">
     <h2> Introduction: </h2>
     <p>Through this lab, we are introduced to Raspberry Pi and various components. The PI Cobbler is used to extend Raspberry Pi pins to a breadboard for easier circuit building. Since the Raspberry Pi cannot read analog signals by itself, an Analog-to-Digital
       Converter (ADC) is used. This will serve as a medium between some of our sensors, such as sound and light, and the Raspberry Pi. Finally, a Python script will be used to gather our various sensor data.</p>
   </div>
+
   <div class="cobbler-header">
     <h2> The PI Cobbler </h2>
     <p>The Pi Cobbler allows you to extend the Raspberry PI pins to a breadboard, allowing for easier circuit building to connect to our various sensors and ADC. A simple connection can be found below: </p>
   </div>
-  <div>
+  
+  <div class="cobbler-container">
     <div class="cobbler-intro">
       <h2> The ADC </h2>
       <p>Throughout this lab, we will be using an MCP3008 which will serve as our ADC. After configuration, it will be able to take in analog signals from our sensors and output them as digital signals that our Raspberry Pi can read. Without the ADC, our
         Raspberry Pi cannot correctly read from our sensors!
       </p>
     </div>
+    
     <div class="cobbler-connection">
       <h2> Connecting the ADC to the PI Cobbler </h2>
       <p>Using a different breadboard than the breadboard that was used for the PI Cobbler, place the ADC as pictured below. </p>
@@ -35,19 +39,22 @@
         Place ADC on a separate breadboard than the one used for the PI Cobbler. Using the pin layouts for the MCP3008 and Raspberry Pi …
       </p>
     </div>
+    
     <div class="cobbler-software">
       <h2> Setting Up the Software for the ADC </h2>
       <p>
         Note: For a quick guide on Unix commands, check out:
         <a href="https://en.wikibooks.org/wiki/Guide_to_Unix/Commands/File_System_Utilities">
-		this link<
-</a>
+		this link</a>
       </p>
       <p>
         After making all the necessary connections, it’s time to connect the software! Fortunately, there’s an Adafruit library for the MCP3008 that we can utilize. In order to install the library, navigate to the directory you are creating the project in on
         your Raspberry Pi and run:
       </p>
     </div>
+
+  </div>        <!-- Cobbler container ends-->
+
     <div>
       <table>
         <tr>
@@ -160,13 +167,15 @@
       <p>You may notice that the values are pretty trash and don't really make any sense. That's because any pin left floating in the ADC will print "garbage" values! But don't worry, we will connect the pins by the end of the lab.
       </p>
     </div>
-    <div>
+
+    <div class="photocell-intro">
       <h2> The Photocell Resistor</h2>
       <p> The photocell resistor is a resistor that reacts to light: the more light that shines on it, the less resistance it will have. The datasheet for the photocell is here:
         <a href="https://cdn.sparkfun.com/datasheets/Sensors/LightImaging/SEN-09088.pdf"> datasheet </a>
       </p>
     </div>
-    <div>
+
+    <div class="photocell-connect">
       <h2> Connecting the Photocell Circuit to the ADC </h2>
       <p> We will first connect the photocell to channel 2 on the ADC by building a simple voltage divider where the input is 5v and the output is channel 2 on the ADC. The circuit diagram is shown below:</p>
       <p>
