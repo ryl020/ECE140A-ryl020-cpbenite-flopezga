@@ -34,6 +34,11 @@ config = {
 firebase = pyrebase.initialize_app(config)
 db = firebase.database()
 
+def write_to_pyrebase(temperature, humidity, light, gate, envelope, audio):
+	data = {"temperature": temperature, "humidity": humidity, "light": light, \
+			"gate": gate, "envelope": envelope, "audio": audio}
+	db.push(data)
+
 
 humidity, temperature = Adafruit_DHT.read_retry(sensor, 4)
 minute = 0
@@ -57,14 +62,3 @@ while minute < 40:
 		print("\n")
 		current_minute = dt.now().minute
 		minute += 1
-
-'''
-print("Time = " + current_time[11:19])
-print("Temp = " + str(temperature)) #TODO: fix this
-print("Hum = " + str(humidity) + "%") #TODO: fix this
-print("Light = " + str(mcp.read_adc(2)))
-print("Gate = " + str(GPIO.input(21)))
-print("Envelope = " + str(mcp.read_adc(1)))
-print("Audio = " + str(mcp.read_adc(0)))
-print("\n")
-'''
