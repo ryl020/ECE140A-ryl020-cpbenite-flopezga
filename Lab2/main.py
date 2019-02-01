@@ -23,6 +23,7 @@ mcp = Adafruit_MCP3008.MCP3008(spi=SPI.SpiDev(SPI_PORT, SPI_DEVICE))
 # GPIO config
 GPIO.setmode(GPIO.BCM)
 GPIO.setup(21, GPIO.IN)
+import pyrebase
 
 config = {
   "apiKey": "AIzaSyA_CDg3tcREhVOj9XIJicQd457X5q4Raq4",
